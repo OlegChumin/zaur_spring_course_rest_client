@@ -21,12 +21,20 @@ public class App
 
         System.out.println("--------------------------------------------------");
 
-        Employee employee = communication.getEmployee(1);
+        Employee employee = communication.getEmployee(14);
         System.out.println(employee);
 
         System.out.println("--------------------------------------------------");
 
         Employee emp = new Employee("Sveta", "Sokolova", "HR", 900);
         communication.saveEmployee(emp);
+
+        System.out.println("--------------------------------------------------");
+
+        Employee emp1 = new Employee("Sveta", "Sokolova", "IT", 1200);
+        emp1.setId(emp.getId());
+        communication.saveEmployee(emp);
+
+System.out.println("--------------------------------------------------");
     }
 }
