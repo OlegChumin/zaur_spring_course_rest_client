@@ -8,11 +8,9 @@ import java.util.List;
 
 /**
  * Hello world!
- *
  */
-public class App 
-{
-    public static void main( String[] args ) {
+public class App {
+    public static void main(String[] args) throws InterruptedException {
         AnnotationConfigApplicationContext context =
                 new AnnotationConfigApplicationContext(MyConfig.class);
         Communication communication = context.getBean("communication", Communication.class);
@@ -24,17 +22,20 @@ public class App
         Employee employee = communication.getEmployee(14);
         System.out.println(employee);
 
+//        System.out.println("--------------------------------------------------");
+//
+//        Employee emp = new Employee("Sveta", "Sokolova", "HR", 900);
+//        communication.saveEmployee(emp);
+
+//        System.out.println("--------------------------------------------------");
+//
+//        Employee emp = new Employee("Sveta", "Sokolova", "IT", 1200);
+//        emp.setId(14);
+//        communication.saveEmployee(emp);
+
         System.out.println("--------------------------------------------------");
 
-        Employee emp = new Employee("Sveta", "Sokolova", "HR", 900);
-        communication.saveEmployee(emp);
-
-        System.out.println("--------------------------------------------------");
-
-        Employee emp1 = new Employee("Sveta", "Sokolova", "IT", 1200);
-        emp1.setId(emp.getId());
-        communication.saveEmployee(emp);
-
-System.out.println("--------------------------------------------------");
+        communication.deleteEmployee(16);
+        communication.deleteEmployee(15);
     }
 }
