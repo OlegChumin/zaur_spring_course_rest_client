@@ -15,7 +15,7 @@ public class Communication {
 
     @Autowired
     private RestTemplate restTemplate;
-    private final String URL = "http://localhost:8080/com_zaurtregulov_spring_rest/api/employees/";
+    private final String URL = "http://localhost:8080/com_zaurtregulov_spring_rest/api/employees";
 
     public List<Employee> getAllEmployees() {
         ResponseEntity<List<Employee>> responseEntity = restTemplate
@@ -25,10 +25,19 @@ public class Communication {
     }
 
     public Employee getEmployee(int id) {
-        return null;
+        Employee employee = restTemplate.getForObject(URL + "/" + id, Employee.class);
+        return employee;
     }
 
     public void saveEmployee(Employee employee) {
+        if(employee.getId()==0) {
+            ResponseEntity<String> responseEntity = restTemplate.postForEntity(URL, employee, String.class);
+            System.out.println("New employee was added to DB");
+            System.out.println(responseEntity.getBody());
+        } else {
+            restTemplate.put(URL, employee);
+            System.out.println("Employee with id = " + employee.getId() + " was updated");
+        }
     }
 
     public void deleteEmployee(int id) {
